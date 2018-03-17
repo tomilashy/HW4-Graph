@@ -9,7 +9,7 @@
 
 undirected::undirected()
 {
-	mymain();
+
 }
 
    bool undirected:: addVertex(Vertex v)

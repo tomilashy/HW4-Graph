@@ -18,13 +18,13 @@ using std::endl;
 
 class Graph{
 public:
-Graph();
-virtual ~Graph();
+Graph(){};
+virtual ~Graph(){};
 //adds one vertex; returns bool if added successfully.
 virtual bool addVertex(Vertex v)=0;
 //Bonus question: adds in a set of vertices; returns bool if added
  //successfully
-virtual bool addVertices(Vertex* vArray) = 0;
+//virtual bool addVertices(Vertex* vArray) = 0;
 //removes a vertex; the edges that have connection with this vertex need to
  //be removed;
 virtual bool removeVertex(Vertex v) = 0;

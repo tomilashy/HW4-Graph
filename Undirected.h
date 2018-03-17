@@ -15,7 +15,7 @@ class undirected:public Graph
 	virtual bool addVertex(Vertex  v);
 	//Bonus question: adds in a set of vertices; returns bool if added
 	 //successfully
-	virtual bool addVertices(Vertex* vArray);
+	//virtual bool addVertices(Vertex* vArray);
 	//removes a vertex; the edges that have connection with this vertex need to
 	 //be removed;
 	virtual bool removeVertex(Vertex  v);
@@ -41,7 +41,7 @@ class undirected:public Graph
 	virtual string toString () const ;
 	//remove all the vertices and edges;
 	virtual bool clean() ;
-	~undirected();
+	virtual ~undirected();
 
 };
 

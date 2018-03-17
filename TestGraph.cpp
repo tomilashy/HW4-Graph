@@ -4,6 +4,7 @@
  *  Created on: Mar 14, 2018
  *      Author: ore-oluwa.olasubulumi
  */
+
 #include <iostream>
 #include <string>
 using std::string;
@@ -15,7 +16,7 @@ using std::endl;
 #include "Undirected.h"
 int main()
 {
-	string x =NULL;
+	string x ="";
 	undirected g;// would change to graph g for actual use of polymorphism,
 	Edge* edge= new Edge[20];
 	Vertex* vertex= new Vertex[20];
@@ -34,8 +35,12 @@ int main()
 	edge [2]= Edge(vertex[3],vertex [2],1600);
 	edge [3]= Edge(vertex[2],vertex [0],1700);
 
-	cout<< "what do you want to do?\n";
+
 	char a;
+	do{
+	cout<< "what do you want to do?\n";
+
+
 	cout<<"a) add Vertex\n"
 			"b) remove vertex\n"
 			"c) add Edge\n"
@@ -45,7 +50,8 @@ int main()
 			"g) display Vertex\n"
 			"h) display Edge\n"
 			"i) display Graph\n"
-			"j) converts the whole graph to a string\n";
+			"j) converts the whole graph to a string\n"
+			"k) Exit\n";
 	cin>>a;
 
 	switch (a)
@@ -58,7 +64,6 @@ int main()
 					{
 						g.addVertex(vertex[i]);
 						break;
-
 					}
 				}
 		}
@@ -116,7 +121,7 @@ int main()
 		break;
 	}
 
-
+	}while (a!='k');
 
 	delete[] edge;
 	delete[] vertex;
