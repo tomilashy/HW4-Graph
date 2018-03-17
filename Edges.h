@@ -21,7 +21,7 @@ class Edge
 			destination=b.getname();
 			distance=dist;
 		};
-		Edge(Edge &e);
+//		Edge(Edge &e);
 		int getDistance(){return distance;};
 		string getOrigin(){return origin;};
 		string getDest(){return destination;};

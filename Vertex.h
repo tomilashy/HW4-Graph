@@ -13,7 +13,7 @@ class Vertex
 {
 	public:
 		Vertex (string a){name = a;};
-		Vertex (const Vertex &v);
+//		Vertex (const Vertex &v);
 		string getname(){return name;};
 		~Vertex();
 	private:
