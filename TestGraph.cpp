@@ -17,8 +17,8 @@ int main()
 {
 	string x =NULL;
 	undirected g;// would change to graph g for actual use of polymorphism,
-	Edge edge[20];
-	Vertex vertex[20];
+	Edge* edge= new Edge[20];
+	Vertex* vertex= new Vertex[20];
 	for (int i= 0; i<20; i++)
 	{
 	vertex [i]= Vertex(x);
