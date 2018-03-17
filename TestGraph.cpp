@@ -17,7 +17,8 @@ using std::endl;
 int main()
 {
 	string x ="";
-	undirected g;// would change to graph g for actual use of polymorphism,
+	undirected G;// would change to graph g for actual use of polymorphism,
+	Graph *g= &G;
 	Edge* edge= new Edge[20];
 	Vertex* vertex= new Vertex[20];
 	for (int i= 0; i<20; i++)
@@ -62,7 +63,7 @@ int main()
 				{
 					if (vertex[i].getname()==x)
 					{
-						g.addVertex(vertex[i]);
+						g->addVertex(vertex[i]);
 						break;
 					}
 				}
@@ -78,7 +79,7 @@ int main()
 
 				if (vertex[i].getname()==node)
 				{
-					g.removeVertex(vertex[i]);
+					g->removeVertex(vertex[i]);
 					break;
 					/*
 					go to  undirected.h and change the virtual bool removeVertex(Vertex& v[]);
@@ -109,7 +110,7 @@ int main()
 
 						if (edge[k].getOrigin() == x && edge[k].getDest() == x) {
 
-							g.addEdge(edge[k], vertex[i], vertex[j]);
+							g->addEdge(edge[k], vertex[i], vertex[j]);
 							break;
 
 						}
