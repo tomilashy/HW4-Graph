@@ -22,6 +22,7 @@ class Edge
 			distance=dist;
 		};
 //		Edge(Edge &e);
+		Edge() = default;
 		int getDistance(){return distance;};
 		string getOrigin(){return origin;};
 		string getDest(){return destination;};

@@ -15,7 +15,7 @@ undirected::undirected()
    bool undirected:: addVertex(Vertex v)
    {	string a;
    	   cout<<"what is the name of the vertex";
-   	   cin<<a;
+   	   cin>>a;
 	   v=Vertex (a);
 	   return true;
    }
@@ -78,10 +78,12 @@ undirected::undirected()
   }
  // converts the whole graph to a string such as 1-2-4-5; 1-3-5; each path
  // is separated by ';'
-  string toString () const
+  string undirected:: toString () const
   {
+	//  const_cast<cars*>(this)->	rent = "Available";
+	  const string a="No";
+	  return a;
 
-	  return "a";
   }
 //remove all the vertices and edges;
    bool undirected:: clean()
@@ -91,7 +93,7 @@ undirected::undirected()
    }
 void undirected::mymain()
 {
-	Vertex* psg= new Vertex[];
+
 }
 undirected::~undirected()
 {

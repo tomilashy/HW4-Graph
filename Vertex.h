@@ -5,14 +5,16 @@
  *      Author: ore-oluwa.olasubulumi
  */
 #include <string>
-
+using std::string;
 #ifndef VERTEX_H_
 #define VERTEX_H_
 
 class Vertex
 {
 	public:
+
 		Vertex (string a){name = a;};
+		Vertex ()= default;
 //		Vertex (const Vertex &v);
 		string getname(){return name;};
 		~Vertex();
