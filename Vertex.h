@@ -13,6 +13,7 @@ class Vertex
 {
 	public:
 		Vertex (string a){name = a;};
+			Vertex() = default;
 //		Vertex (const Vertex &v);
 		string getname(){return name;};
 		~Vertex();
