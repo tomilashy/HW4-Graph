@@ -23,6 +23,10 @@ class Edge
 		};
 //		Edge(Edge &e);
 		Edge() = default;
+		bool operator< (const Edge &right) const
+		{
+		    return origin < right.destination;
+		}
 		int getDistance(){return distance;};
 		string getOrigin(){return origin;};
 		string getDest(){return destination;};

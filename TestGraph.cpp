@@ -5,8 +5,14 @@
  *      Author: ore-oluwa.olasubulumi
  */
 
+#include <algorithm>
 #include <iostream>
+#include <iterator>
 #include <string>
+#include <map>
+#include <list>
+#include <set>
+using std::list;
 using std::string;
 using std::cout;
 using std::cin;
@@ -16,6 +22,7 @@ using std::endl;
 #include "Undirected.h"
 int main()
 {
+
 	string x ="";
 	undirected g;// would change to graph g for actual use of polymorphism,
 	Edge* edge= new Edge[20];
@@ -38,7 +45,7 @@ int main()
 
 	char a;
 	do{
-	cout<< "what do you want to do?\n";
+	cout<< "\nwhat do you want to do?\n";
 
 
 	cout<<"a) add Vertex\n"
@@ -63,8 +70,20 @@ int main()
 					if (vertex[i].getname()==x)
 					{
 						g.addVertex(vertex[i]);
+
+						for (int j =0; j<20; j++)
+						{
+							if (vertex[i].getname()==vertex[j].getname())
+							{
+								g.removeVertex(vertex[i]);
+								cout<<"\n you inputted a duplicate which is invalid";
+								break;
+							}
+						}
+
 						break;
 					}
+
 				}
 		}
 		break;
@@ -73,10 +92,13 @@ int main()
 			cout<<"Input the name of Node you want to remove";
 							string node;
 							cin>>node;
-			for (int i= 0; i<20; i++)
-			{
+			for (int i= 0; i<=20; i++)
+			{ if (i==20)
+				{
+					cout<<"INVALID VERTEX!!\n";
+				}
 
-				if (vertex[i].getname()==node)
+			else if (vertex[i].getname()==node)
 				{
 					g.removeVertex(vertex[i]);
 					break;
@@ -88,6 +110,7 @@ int main()
 					then set the final array back to NULL
 					*/
 				}
+
 			}
 		}
 		break;
@@ -111,14 +134,148 @@ int main()
 
 							g.addEdge(edge[k], vertex[i], vertex[j]);
 							break;
-
+						}
+						else if (k++==20)
+						{
+							cout<<"Memory Full";
 						}
 					}
 				}
+
+
 			}
 		}
 		}
 		break;
+		case 'd':
+		{
+			cout<<"Input the name of origin node";
+			string node1;
+			cin>>node1;
+			cout<<"Input the name of destination node";
+			string node2;
+			cin>>node2;
+				for (int k = 0; k <= 20; k++)
+				{if (k==20)
+						{
+							cout<<"INVALID EDGE!!\n";
+
+						}
+				else if (edge[k].getOrigin() == node1 && edge[k].getDest() == node2)
+						{
+							g.removes(edge[k]);
+						}
+
+				}
+		}
+		break;
+		case 'e':
+		{
+			cout<<"Input the name of Node you want to search";
+			string node;
+			cin>>node;
+			for (int i= 0; i<=20; i++)
+			{
+				if (i==20)
+				{
+					cout<<"INVALID VERTEX!!\n";
+				}
+
+				else if (vertex[i].getname()==node)
+				{
+					g.searchVertex(vertex[i]);
+				}
+
+			}
+
+		}
+			break;
+		case 'f':
+				{
+					cout<<"Input the name of origin node";
+								string node1;
+								cin>>node1;
+								cout<<"Input the name of destination node";
+								string node2;
+								cin>>node2;
+									for (int k = 0; k <= 20; k++)
+									{if (k==20)
+											{
+												cout<<"EDGE DOES NOT EXIST!!\n";
+
+											}
+									else if (edge[k].getOrigin() == node1 && edge[k].getDest() == node2)
+											{
+												g.searchEdge(edge[k]);
+											}
+
+									}
+				}
+					break;
+		case 'g':
+				{
+					for (int i= 0; i<=20; i++)
+					{  if (i==20)
+						{
+							break;
+						}
+						else if (vertex[i].getname()!="")
+						{
+							g.display(vertex[i]);
+						}
+
+					}
+
+				}
+					break;
+		case 'h':
+				{
+					for (int i= 0; i<=20; i++)
+						{  if (i==20)
+							{
+								break;
+							}
+							else if (edge[i].getOrigin()!="")
+							{
+								g.display(edge[i]);
+							}
+
+						}
+
+				}
+					break;
+		case 'i':
+				{
+
+					int V=0;
+					for (int i= 0; i<=20; i++)
+						{
+						if (i==20){break;}
+
+						else if (vertex[i].getname()!=""){	V++;}
+						}		//gotten number of nodes
+
+
+					g.display(edge);
+
+				}
+					break;
+		case 'j':
+				{
+					int V=0;
+										for (int i= 0; i<=20; i++)
+											{
+											if (i==20){break;}
+
+											else if (vertex[i].getname()!=""){	V++;}
+											}		//gotten number of nodes
+
+
+										g.toString(edge);
+
+
+				}
+					break;
 	}
 
 	}while (a!='k');
@@ -127,4 +284,3 @@ int main()
 	delete[] vertex;
 	return 0;
 }
-
