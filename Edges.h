@@ -23,9 +23,17 @@ class Edge
 		};
 //		Edge(Edge &e);
 		Edge() = default;
-		int getDistance(){return distance;};
-		string getOrigin(){return origin;};
-		string getDest(){return destination;};
+		int getDistance()const{return distance;};
+		string getOrigin()const{return origin;};
+		string getDest()const{return destination;};
+		void print() const
+		{
+			cout<<"\nEdge: "
+					"\nOrigin: "<<origin;
+			cout<<"\nDestination: "<<destination;
+			cout<<"\nDistance: "<<distance<<endl;
+
+		}
 	private:
 		string origin;
 		string destination;

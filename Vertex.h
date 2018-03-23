@@ -16,7 +16,7 @@ class Vertex
 		Vertex (string a){name = a;};
 		Vertex ()= default;
 //		Vertex (const Vertex &v);
-		string getname(){return name;};
+		string getname() const{return name;};
 		~Vertex(){};
 	private:
 		string name;
