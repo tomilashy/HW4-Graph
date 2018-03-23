@@ -13,10 +13,11 @@ class undirected:public Graph
 	private:
 	vector <Edge> edge;
 	vector <Vertex> vertex;
+	 string conv; //convert to string
 
 	public:
 	undirected();
-	void mymain();
+
 	virtual bool addVertex(Vertex&  v);
 	//Bonus question: adds in a set of vertices; returns bool if added
 	 //successfully

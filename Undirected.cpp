@@ -170,15 +170,116 @@ bool undirected:: addVertex(Vertex &v)
 // displays the whole graph with your own defined format
   void undirected:: display() const
   {
+	  	  std::map<string,string> sets;
+	  	  for (unsigned int i= 0; i<edge.size(); i++)
+	  	  {
+	  		  string c1=edge[i].getOrigin(),c2=edge[i].getDest();
+	  		  sets.insert({c1,c2});
+	  	  }
+	  	  cout<<"where do you want to start?";
+	  	  string s;
+	  	  cin>>s;
+	  	  cout<<s;
+	  	  here:
+	  	  for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
+	  	  {
+	  		  if(sets.size()==0)
+	  		  {
+	  			  break;
+	  		  }
+
+	  		  if(it->first==s)
+	  		  {
+	  			  if(sets.size()==1)
+	  			  {
+	  				  goto here2;
+	  			  }
+
+	  			  cout<<" ";
+	  			  cout<<it->second;
+	  			  s=it->second;
+	  			  here2:
+	  			  sets.erase(it);
+	  			  goto here;
+	  		  }
+	  	  }
+	  	  for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
+	  	  {
+	  		  if(sets.size()==0)
+	  		  {
+	  			  break;
+	  		  }
+
+	  		  if(sets.size()!=0)
+	  		  {
+	  			  s=it->first;
+	  			  goto here;
+	  		  }
+	  	  }
+
 
   }
  // converts the whole graph to a string such as 1-2-4-5; 1-3-5; each path
  // is separated by ';'
   string undirected:: toString () const
   {
-	//  const_cast<cars*>(this)->	rent = "Available";
-	  const string a="No";
-	  return a;
+	//  const_cast<undirected*>(this)->	rent = "Available";
+
+
+	  	  	  std::map<string,string> sets;
+
+	  	  	for (unsigned int i= 0; i<edge.size(); i++)
+	  	  		  {
+	  	  			  string c1=edge[i].getOrigin(),c2=edge[i].getDest();
+	  	  			  sets.insert({c1,c2});
+	  	  		  }
+	  	  	 		cout<<"where do you want to start?";
+	  	  	 		string s;
+	  	  	 		cin>>s;
+	  	  	 	const_cast<undirected*>(this)->conv=s;
+
+	  	  	 			here:
+	  	  	 			for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
+	  	  	 			{
+	  	  	 				if(sets.size()==0)
+	  	  	 								{
+	  	  	 									break;
+	  	  	 								}
+
+	  	  	 				if(it->first==s)
+	  	  	 				{
+
+	  	  	 					if(sets.size()==1)
+	  	  	 										{
+	  	  	 											goto here2;
+	  	  	 										}
+
+	  	  	 				const_cast<undirected*>(this)->conv +="->" +it->second;
+	  	  	 					s=it->second;here2:
+	  	  	 					sets.erase(it);
+
+	  	  	 					goto here;
+	  	  	 				}
+	  	  	 			}
+
+	  	  	 			for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
+	  	  	 						{
+	  	  	 							if(sets.size()==0)
+	  	  	 											{
+	  	  	 												break;
+	  	  	 											}
+
+	  	  	 							if(sets.size()!=0)
+	  	  	 							{
+
+	  	  	 								s=it->first;
+	  	  	 							goto here;
+	  	  	 							}
+	  	  	 						}
+
+
+	  	  return conv;
+
 
   }
 //remove all the vertices and edges;
@@ -186,14 +287,77 @@ bool undirected:: addVertex(Vertex &v)
    {
 	   vertex.clear();
 	   edge.clear();
+	   cout<<"Cleared!!";
 	   return true;
    }
-void undirected::mymain()
-{
 
-}
 undirected::~undirected()
 {
 
 }
 
+
+
+//// converts the whole graph to a string such as 1-2-4-5; 1-3-5; each path
+//// is separated by ';'
+//string undirected:: toString () const
+//{
+//	  string conv; //convert to string
+//
+//	  	  std::map<string,string> sets;
+//
+//	  	for (unsigned int i= 0; i<edge.size(); i++)
+//	  		  {
+//	  			  string c1=edge[i].getOrigin(),c2=edge[i].getDest();
+//	  			  sets.insert({c1,c2});
+//	  		  }
+//	  	 		cout<<"where do you want to start?";
+//	  	 		string s;
+//	  	 		cin>>s;
+//	  	 		conv=s;
+//
+//	  	 			here:
+//	  	 			for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
+//	  	 			{
+//	  	 				if(sets.size()==0)
+//	  	 								{
+//	  	 									break;
+//	  	 								}
+//
+//	  	 				if(it->first==s)
+//	  	 				{
+//
+//	  	 					if(sets.size()==1)
+//	  	 										{
+//	  	 											goto here2;
+//	  	 										}
+//
+//	  	 					conv +="->" +it->second;
+//	  	 					s=it->second;here2:
+//	  	 					sets.erase(it);
+//
+//	  	 					goto here;
+//	  	 				}
+//	  	 			}
+//
+//	  	 			for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
+//	  	 						{
+//	  	 							if(sets.size()==0)
+//	  	 											{
+//	  	 												break;
+//	  	 											}
+//
+//	  	 							if(sets.size()!=0)
+//	  	 							{
+//
+//	  	 								s=it->first;
+//	  	 							goto here;
+//	  	 							}
+//	  	 						}
+//	  	 			//cout<<endl<<conv<<endl;
+//
+//	  return "";
+//
+//
+//}
+////remove all the vertices and edges;

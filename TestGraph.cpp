@@ -17,9 +17,9 @@ using std::endl;
 int main()
 {
 
-	undirected G;// would change to graph g for actual use of polymorphism,
-	Graph *g= &G;
-	g->toString();
+	undirected G;
+	Graph *g= &G;	//using polymorphism so other graphs can be made later
+
 
 
 	char a;
@@ -36,7 +36,8 @@ int main()
 			"h) display Edge\n"
 			"i) display Graph\n"
 			"j) converts the whole graph to a string\n"
-			"k) Exit\n";
+			"k) Clear all Edges and Vertex\n"
+			"l) Exit\n";
 	cin>>a;
 
 	switch (a)
@@ -158,17 +159,22 @@ int main()
 		break;
 		case 'i':
 		{
-
+			g->display();
 		}
 		break;
 		case 'j':
 		{
-
+			cout<<endl<<g->toString();
+		}
+		break;
+		case'k':
+		{
+			g->clean();
 		}
 		break;
 	}
 
-	}while (a!='k');
+	}while (a!='l');
 
 
 	return 0;

@@ -9,6 +9,8 @@
 #include <iostream>
 #include <string>
 #include<vector>
+#include<map>
+using std::map;
 using std::vector;
 using std::string;
 using std::cout;
