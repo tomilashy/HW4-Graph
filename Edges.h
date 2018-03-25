@@ -26,6 +26,7 @@ class Edge
 		int getDistance()const{return distance;};
 		string getOrigin()const{return origin;};
 		string getDest()const{return destination;};
+		void increment(){distance+=1;};
 		void print() const
 		{
 			cout<<"\nEdge: "

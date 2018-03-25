@@ -17,11 +17,12 @@ using std::endl;
 int main()
 {
 
-	undirected G;
-	Graph *g= &G;	//using polymorphism so other graphs can be made later
+	undirected G1,G2,G3;
+	Graph *g= &G1;	//using polymorphism so other graphs can be made later
+	Vertex Vr("Ngr");
+	g->addVertex(Vr);
 
-
-
+	 g= &G3;
 	char a;int j;char q2;
 	do{
 	cout<< "\n\nwhat do you want to do?\n"
@@ -31,8 +32,10 @@ int main()
 
 	cin>>j;
 switch(j)
+{
 case 1:
 {
+	do{
 	cout<< "\n\nwhat do you want to do?\n";
 	cout<<"a) add Vertex\n"
 			"b) remove vertex\n"
@@ -48,148 +51,150 @@ case 1:
 			"l) Exit Q1\n";
 	cin>>a;
 	switch (a)
-	do{
+	{
 	case 'a':
-			{
-				cout<<"\nWhat is the name of the Vertex";
-				string v;
-				cin>>v;
-				Vertex V(v);
-				g->addVertex(V);
-			}
-			break;
-			case 'b':
-			{
-				cout<<"\nWhat is the name of the Vertex";
-							string v;
-							cin>>v;
-							Vertex V(v);
-				g->removeVertex(V);
-			}
-			break;
-			case 'c':
-			{
-				cout<<"\nWhat is the name of the Vertex";
-				string v1;
-				cin>>v1;
-				Vertex V(v1);
-
-				if(g->searchVertex(V))
 				{
 					cout<<"\nWhat is the name of the Vertex";
-								string v2;
-								cin>>v2;
-								Vertex V2(v2);
-					if(g->searchVertex(V2))
+					string v;
+					cin>>v;
+					Vertex V(v);
+					g->addVertex(V);
+				}
+				break;
+				case 'b':
+				{
+					cout<<"\nWhat is the name of the Vertex";
+								string v;
+								cin>>v;
+								Vertex V(v);
+					g->removeVertex(V);
+				}
+				break;
+				case 'c':
+				{
+					cout<<"\nWhat is the name of the Vertex";
+					string v1;
+					cin>>v1;
+					Vertex V(v1);
+
+					if(g->searchVertex(V))
 					{
-						int n;
-						cout<<"\nwhat is the their distance";
-						cin>>n;
-						Edge e(V,V2,n);
-						g->addEdge(e);
+						cout<<"\nWhat is the name of the Vertex";
+									string v2;
+									cin>>v2;
+									Vertex V2(v2);
+						if(g->searchVertex(V2))
+						{
+							int n;
+							cout<<"\nwhat is the their distance";
+							cin>>n;
+							Edge e(V,V2,n);
+							g->addEdge(e);
+						}
+
 					}
 
 				}
+				break;
+				case 'd':
+				{
 
-			}
-			break;
-			case 'd':
-			{
+					cout<<"\nWhat is the name of the Origin";
+					string v1;
+					cin>>v1;
+					Vertex V(v1);
 
-				cout<<"\nWhat is the name of the Origin";
-				string v1;
-				cin>>v1;
-				Vertex V(v1);
+
+						cout<<"\nWhat is the name of the Destination";
+									string v2;
+									cin>>v2;
+									Vertex V2(v2);
+
+							int n;
+							cout<<"\nwhat is the their distance";
+							cin>>n;
+							Edge e(V,V2,n);
+							g->removes(e);
+
+
+				}
+				break;
+				case 'e':
+				{
+					cout<<"\nWhat is the name of the Vertex";
+								string v1;
+								cin>>v1;
+								Vertex V(v1);
+
+								g->searchVertex(V);
+
+
+
+				}
+				break;
+				case 'f':
+				{
+
+					cout<<"\nWhat is the name of the Origin";
+					string v1;
+					cin>>v1;
+					Vertex V(v1);
 
 
 					cout<<"\nWhat is the name of the Destination";
-								string v2;
-								cin>>v2;
-								Vertex V2(v2);
+					string v2;
+					cin>>v2;
+					Vertex V2(v2);
 
-						int n;
-						cout<<"\nwhat is the their distance";
-						cin>>n;
-						Edge e(V,V2,n);
-						g->removes(e);
+					int n;
+					cout<<"\nwhat is the their distance";
+					cin>>n;
+					Edge e(V,V2,n);
+					g->removes(e);
+				}
+				break;
+				case 'g':
+				{
+					Vertex v("");
+					g->display(v);
+				}
+				break;
+				case 'h':
+				{
+					Vertex v(""),v2("");
+					Edge e(v,v2,0);
+					g->display(e);
 
-
-			}
-			break;
-			case 'e':
-			{
-				cout<<"\nWhat is the name of the Vertex";
-							string v1;
-							cin>>v1;
-							Vertex V(v1);
-
-							g->searchVertex(V);
-
-
-
-			}
-			break;
-			case 'f':
-			{
-
-				cout<<"\nWhat is the name of the Origin";
-				string v1;
-				cin>>v1;
-				Vertex V(v1);
-
-
-				cout<<"\nWhat is the name of the Destination";
-				string v2;
-				cin>>v2;
-				Vertex V2(v2);
-
-				int n;
-				cout<<"\nwhat is the their distance";
-				cin>>n;
-				Edge e(V,V2,n);
-				g->removes(e);
-			}
-			break;
-			case 'g':
-			{
-				Vertex v("");
-				g->display(v);
-			}
-			break;
-			case 'h':
-			{
-				Vertex v(""),v2("");
-				Edge e(v,v2,0);
-				g->display(e);
-
-			}
-			break;
-			case 'i':
-			{
-				g->display();
-			}
-			break;
-			case 'j':
-			{
-				cout<<endl<<g->toString();
-			}
-			break;
-			case'k':
-			{
-				g->clean();
-			}
-			break;
-
+				}
+				break;
+				case 'i':
+				{
+					g->display();
+				}
+				break;
+				case 'j':
+				{
+					cout<<endl<<g->toString();
+				}
+				break;
+				case'k':
+				{
+					g->clean();
+				}
+				break;
+	}
 	}while(a!='l');
+}
 break;
 case 2:
+{
 	do{
 	cout<< "\n\nwhat do you want to do?\n";
 		cout<<"a) G1 == G2, returns true if G1 and G2 have the exact same vertices and edges\n"
 				"b) G1 = G2, assigns Graph G2 to Graph G\n"
 				"c) G++ and ++G, increases the weights of all edges by one;\n"
 				"d) G3 = G1 + G2, returns a graph that contains all the nodes of G1 and G2, all the edges of G1 and G2;\n"
-				"e) G1 > G2, returns boolean if the sum of weights of G1’s edges is greater than the sum of weights of G2’s edges\n"
+				"e) G1 > G2, returns boolean if the sum of weights of G1's edges is greater than the sum of weights of G2's edges\n"
 				"f) << G outputs the graph G.\n"
 				"g) Exit Q2";
 		cin>>q2;
@@ -197,27 +202,86 @@ case 2:
 		{
 			case 'a':
 			{
-
+					if (G1==G2)
+					{
+						cout<<"Graphs are the same";
+					}
+					else
+					{
+						cout<<"Graphs are not the same";
+					}
 			}
 			break;
 			case 'b':
 			{
-
+				G1=G2;
 			}
 			break;
 			case 'c':
 			{
+				int which;
+				do{
+				cout<<"which graph do you want to increment?(input 1,2 or 3 for graph 1,2 or 3)";
+				 cin>>which;
+				 if(which ==1)
+				 {
+					 cout<<"post-increment or pre-increment(1for post, 2 for pre) ";
+					 int post;cin>>post;
+					 if(post==1)
+					 {
+						 G1++;
+					 }
+					 else if(post==2)
+					 {
+						 ++G1;
+					 }
+				 }
+				 else if(which ==2)
+				 {
+					 cout<<"post-increment or pre-increment(1for post, 2 for pre) ";
+					 int post;cin>>post;
+					 if(post==1)
+					 {
+						 G1++;
+					 }
+					 else if(post==2)
+					 {
+						 ++G1;
+					 }
+				 }
+				 else if(which ==3)
+				 {
+					 cout<<"post-increment or pre-increment(1for post, 2 for pre) ";
+					 int post;cin>>post;
+					 if(post==1)
+					 {
+						 G3++;
+					 }
+					 else if(post==2)
+					 {
+						 ++G3;
+					 }
+				 }
 
+
+				}while(which!=1||which!=2||which!=3);
 			}
 			break;
 			case 'd':
 			{
-
+					G3=(G1+G2);
 			}
 			break;
 			case 'e':
 			{
-
+				 if(G1>G2)
+					 {
+						cout<<"Graph 1 weight is greater than Graph 2";
+					 }
+				 else
+				 {
+					 cout<<"Graph 1 weight is less than or equal to Graph 2";
+				 }
 			}
 			break;
 			case 'f':
@@ -228,9 +292,10 @@ case 2:
 		}
 
 	}while (q2!='g');
+}
 	break;
-	}
 
+}
 	}while (j!=3);
 
 

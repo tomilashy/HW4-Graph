@@ -17,6 +17,12 @@ class undirected:public Graph
 
 	public:
 	undirected();
+	friend bool operator==(undirected &a, undirected &b);
+	friend bool operator>(undirected &a, undirected &b);
+	undirected& operator=(undirected &a);
+	undirected& operator++();       // Prefix increment operator.
+	undirected operator++(int);     // Postfix increment operator.
+	undirected& operator+(undirected&);
 
 	virtual bool addVertex(Vertex&  v);
 	//Bonus question: adds in a set of vertices; returns bool if added

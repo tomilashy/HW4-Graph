@@ -296,68 +296,82 @@ undirected::~undirected()
 
 }
 
+bool operator==(undirected &a,undirected &b)
+{
+	bool val = false;
+	if (a.vertex.size()==b.vertex.size()&&a.edge.size()==b.edge.size())
+	{
+	  for ( unsigned int it =0; it != a.vertex.size(); ++it )
+	  {
+		  for ( unsigned int it1 =0; it1 != b.edge.size(); ++it1 )
+		  {
+			  if(a.vertex[it].getname()==b.vertex[it].getname())
+			  {
+				  if(a.edge[it].getOrigin()==a.edge[it].getOrigin()&&a.edge[it].getDest()==a.edge[it].getDest()&&a.edge[it].getDistance()==a.edge[it].getDistance())
+				  {
+					  val=true;
+				  }
+			  }
+
+		  }
+	  }
+	}
+	return val;
+}
+bool operator>(undirected &a, undirected &b)
+{
+	bool val=false;
+	int wa=0,wb=0;
+	 for ( unsigned int it =0; it != a.edge.size(); ++it )
+	 {
+		 wa+=a.edge[it].getDistance();
+	 }
+	 for ( unsigned int it =0; it != b.edge.size(); ++it )
+	 	 {
+	 		 wb+=b.edge[it].getDistance();
+	 	 }
+	 if(wa>wb)
+	 {
+		 val=true;
+	 }
+
+	return val;
+}
+undirected& undirected::operator=(undirected &a)
+{
+	//vector1.insert( vector1.end(), vector2.begin(), vector2.end() );
 
 
-//// converts the whole graph to a string such as 1-2-4-5; 1-3-5; each path
-//// is separated by ';'
-//string undirected:: toString () const
-//{
-//	  string conv; //convert to string
-//
-//	  	  std::map<string,string> sets;
-//
-//	  	for (unsigned int i= 0; i<edge.size(); i++)
-//	  		  {
-//	  			  string c1=edge[i].getOrigin(),c2=edge[i].getDest();
-//	  			  sets.insert({c1,c2});
-//	  		  }
-//	  	 		cout<<"where do you want to start?";
-//	  	 		string s;
-//	  	 		cin>>s;
-//	  	 		conv=s;
-//
-//	  	 			here:
-//	  	 			for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
-//	  	 			{
-//	  	 				if(sets.size()==0)
-//	  	 								{
-//	  	 									break;
-//	  	 								}
-//
-//	  	 				if(it->first==s)
-//	  	 				{
-//
-//	  	 					if(sets.size()==1)
-//	  	 										{
-//	  	 											goto here2;
-//	  	 										}
-//
-//	  	 					conv +="->" +it->second;
-//	  	 					s=it->second;here2:
-//	  	 					sets.erase(it);
-//
-//	  	 					goto here;
-//	  	 				}
-//	  	 			}
-//
-//	  	 			for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
-//	  	 						{
-//	  	 							if(sets.size()==0)
-//	  	 											{
-//	  	 												break;
-//	  	 											}
-//
-//	  	 							if(sets.size()!=0)
-//	  	 							{
-//
-//	  	 								s=it->first;
-//	  	 							goto here;
-//	  	 							}
-//	  	 						}
-//	  	 			//cout<<endl<<conv<<endl;
-//
-//	  return "";
-//
-//
-//}
-////remove all the vertices and edges;
+		a.vertex.clear();
+		a.edge.clear();
+		a.vertex.insert( a.vertex.end(), this->vertex.begin(), this->vertex.end() );
+		a.edge.insert( a.edge.end(), this->edge.begin(), this->edge.end() );
+		cout<<"Assignment successful";
+	return *this;
+}
+
+
+undirected& undirected::operator++()
+{
+	 for ( unsigned int it =0; it != edge.size(); ++it )
+			  	   {
+			  		 edge[it].increment();
+		 	      }
+
+   return *this;
+}
+
+// Define postfix increment operator.
+undirected undirected::operator++(int)
+{
+	undirected temp = *this;
+   ++*this;
+   return temp;
+}
+undirected& undirected::operator+(undirected& a)
+{
+	a.vertex.insert( a.vertex.end(), this->vertex.begin(), this->vertex.end() );
+	a.edge.insert( a.edge.end(), this->edge.begin(), this->edge.end() );
+			cout<<"Addition successful";
+			return *this;
+}
