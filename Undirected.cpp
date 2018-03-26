@@ -190,15 +190,11 @@ bool undirected:: addVertex(Vertex &v)
 
 	  		  if(it->first==s)
 	  		  {
-	  			  if(sets.size()==1)
-	  			  {
-	  				  goto here2;
-	  			  }
-
+	  			  
 	  			  cout<<" ";
 	  			  cout<<it->second;
 	  			  s=it->second;
-	  			  here2:
+	  			 
 	  			  sets.erase(it);
 	  			  goto here;
 	  		  }
@@ -249,13 +245,10 @@ bool undirected:: addVertex(Vertex &v)
 	  	  	 				if(it->first==s)
 	  	  	 				{
 
-	  	  	 					if(sets.size()==1)
-	  	  	 										{
-	  	  	 											goto here2;
-	  	  	 										}
+	  	  	 					
 
 	  	  	 				const_cast<undirected*>(this)->conv +="->" +it->second;
-	  	  	 					s=it->second;here2:
+	  	  	 					s=it->second;
 	  	  	 					sets.erase(it);
 
 	  	  	 					goto here;
