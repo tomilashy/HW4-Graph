@@ -16,6 +16,7 @@ using std::string;
 using std::cout;
 using std::cin;
 using std::endl;
+using std::ostream;
 #ifndef GRAPH_H_
 #define GRAPH_H_
 

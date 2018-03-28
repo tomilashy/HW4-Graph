@@ -23,6 +23,7 @@ class undirected:public Graph
 	undirected& operator++();       // Prefix increment operator.
 	undirected operator++(int);     // Postfix increment operator.
 	undirected& operator+(undirected&);
+	friend ostream& operator<<(ostream& out, const undirected&dt);
 
 	virtual bool addVertex(Vertex&  v);
 	//Bonus question: adds in a set of vertices; returns bool if added

@@ -179,6 +179,7 @@ bool undirected:: addVertex(Vertex &v)
 	  	  cout<<"where do you want to start?";
 	  	  string s;
 	  	  cin>>s;
+	  	  here3:
 	  	  cout<<s;
 	  	  here:
 	  	  for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
@@ -190,30 +191,27 @@ bool undirected:: addVertex(Vertex &v)
 
 	  		  if(it->first==s)
 	  		  {
-	  			  if(sets.size()==1)
-	  			  {
-	  				  goto here2;
-	  			  }
-
-	  			  cout<<" ";
+	  			  cout<<"->";
 	  			  cout<<it->second;
 	  			  s=it->second;
-	  			  here2:
+
 	  			  sets.erase(it);
 	  			  goto here;
 	  		  }
 	  	  }
+	  	  cout<<endl;
 	  	  for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
 	  	  {
 	  		  if(sets.size()==0)
 	  		  {
+
 	  			  break;
 	  		  }
 
 	  		  if(sets.size()!=0)
 	  		  {
 	  			  s=it->first;
-	  			  goto here;
+	  			  goto here3;
 	  		  }
 	  	  }
 
@@ -238,44 +236,41 @@ bool undirected:: addVertex(Vertex &v)
 	  	  	 		cin>>s;
 	  	  	 	const_cast<undirected*>(this)->conv=s;
 
-	  	  	 			here:
-	  	  	 			for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
-	  	  	 			{
-	  	  	 				if(sets.size()==0)
-	  	  	 								{
-	  	  	 									break;
-	  	  	 								}
+	  	  	 	here:
+				for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
+				{
+					if(sets.size()==0)
+					{
+						break;
+					}
 
-	  	  	 				if(it->first==s)
-	  	  	 				{
+					if(it->first==s)
+					{
 
-	  	  	 					if(sets.size()==1)
-	  	  	 										{
-	  	  	 											goto here2;
-	  	  	 										}
 
-	  	  	 				const_cast<undirected*>(this)->conv +="->" +it->second;
-	  	  	 					s=it->second;here2:
-	  	  	 					sets.erase(it);
 
-	  	  	 					goto here;
-	  	  	 				}
-	  	  	 			}
+						const_cast<undirected*>(this)->conv +="->" +it->second;
+						s=it->second;
+						sets.erase(it);
 
-	  	  	 			for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
-	  	  	 						{
-	  	  	 							if(sets.size()==0)
-	  	  	 											{
-	  	  	 												break;
-	  	  	 											}
+						goto here;
+					}
+				}
+				cout<<endl;
+				for (std::map<string,string>::iterator it=sets.begin(); it!=sets.end(); ++it)
+				{
+					if(sets.size()==0)
+					{
+						break;
+					}
 
-	  	  	 							if(sets.size()!=0)
-	  	  	 							{
+					if(sets.size()!=0)
+					{
 
-	  	  	 								s=it->first;
-	  	  	 							goto here;
-	  	  	 							}
-	  	  	 						}
+						s=it->first;
+						goto here;
+					}
+				}
 
 
 	  	  return conv;
@@ -307,7 +302,7 @@ bool operator==(undirected &a,undirected &b)
 		  {
 			  if(a.vertex[it].getname()==b.vertex[it].getname())
 			  {
-				  if(a.edge[it].getOrigin()==a.edge[it].getOrigin()&&a.edge[it].getDest()==a.edge[it].getDest()&&a.edge[it].getDistance()==a.edge[it].getDistance())
+				  if(a.edge[it].getOrigin()==b.edge[it].getOrigin()&&a.edge[it].getDest()==b.edge[it].getDest()&&a.edge[it].getDistance()==b.edge[it].getDistance())
 				  {
 					  val=true;
 				  }
@@ -342,11 +337,11 @@ undirected& undirected::operator=(undirected &a)
 	//vector1.insert( vector1.end(), vector2.begin(), vector2.end() );
 
 
-		a.vertex.clear();
-		a.edge.clear();
-		a.vertex.insert( a.vertex.end(), this->vertex.begin(), this->vertex.end() );
-		a.edge.insert( a.edge.end(), this->edge.begin(), this->edge.end() );
-		cout<<"Assignment successful";
+		this->vertex.clear();
+		this->edge.clear();
+		this->vertex.insert( this->vertex.end(),a.vertex.begin(), a.vertex.end() );
+		this->edge.insert( this->edge.end(), a.edge.begin(), a.edge.end() );
+		cout<<"\nAssignment successful";
 	return *this;
 }
 
@@ -370,8 +365,92 @@ undirected undirected::operator++(int)
 }
 undirected& undirected::operator+(undirected& a)
 {
-	a.vertex.insert( a.vertex.end(), this->vertex.begin(), this->vertex.end() );
-	a.edge.insert( a.edge.end(), this->edge.begin(), this->edge.end() );
-			cout<<"Addition successful";
-			return *this;
+
+	undirected d;
+	//d->vertex.clear();//
+	d.vertex.erase (d.vertex.begin(),d.vertex.end());
+	//d->edge.clear();//
+	d.edge.erase (d.edge.begin(),d.edge.end());
+
+	d.vertex.insert( d.vertex.end(), this->vertex.begin(), this->vertex.end() );
+	d.edge.insert( d.edge.end(),this->edge.begin(),this->edge.end());
+
+	if (a.vertex.size()>this->vertex.size())
+	{
+		this->vertex.resize(a.vertex.size());
+	}
+	else if(a.vertex.size()<this->vertex.size())
+	{
+		a.vertex.resize(this->vertex.size());
+	}
+	if (a.edge.size()>this->edge.size())
+		{
+			this->edge.resize(a.edge.size());
+		}
+		else if(a.edge.size()>this->edge.size())
+		{
+			a.edge.resize(this->edge.size());
+		}
+
+
+
+
+		for ( unsigned int it =0; it != this->vertex.size(); ++it )
+		{
+			if(a.vertex[it].getname()==this->vertex[it].getname())
+			{
+
+			}
+			else
+			{
+				d.vertex.insert( d.vertex.end(),a.vertex[it]);
+			}
+
+			if(a.vertex[it].getname()=="")
+			{
+				        d.vertex.erase(d.vertex.end());
+			}
+
+
+	}
+
+	Vertex v(""),ab("");
+	Edge ev(v,ab,0);
+
+	if (a.edge.size()>this->edge.size())
+	{
+		this->edge.resize(a.edge.size());
+	}
+	else if(a.edge.size()<this->edge.size())
+	{
+		a.edge.resize(this->edge.size());
+	}
+	for ( unsigned int it =0; it < this->edge.size(); ++it)
+		{
+
+			if(a.edge[it].getOrigin()==this->edge[it].getOrigin()&&a.edge[it].getDest()==this->edge[it].getDest()&&a.edge[it].getDistance()==this->edge[it].getDistance())
+			{
+
+			}
+			else
+			{
+				d.edge.insert( d.edge.end(),a.edge[it]);
+			}
+			if(a.edge[it].getOrigin()=="")
+			{
+				d.edge.erase(d.edge.end());
+			}
+
+		}d.display(v);cout<<endl;d.display(ev);
+		cout<<"\nAddition successful";
+
+
+		cout<<endl;
+			return d;
+}
+
+ostream& operator<<(ostream& out, const undirected& gr)
+{
+	out<<gr.toString();
+    return out;
 }

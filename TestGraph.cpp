@@ -19,10 +19,13 @@ int main()
 
 	undirected G1,G2,G3;
 	Graph *g= &G1;	//using polymorphism so other graphs can be made later
-	Vertex Vr("Ngr");
-	g->addVertex(Vr);
+	Vertex Vr("canada");g->addVertex(Vr);
+	cout<<"\nThe \"Added successfully\"is shown because I added a vertex to Graph 1.(all graphs by default are the same))"
+			"\nThis is so that you can test Q2 also you can edit any of the graphs through Q2 and test them through Q2"
+			"\nand you also check is G1=G2 work by displaying the edge and vertex in Q1";
 
-	 g= &G3;
+
+	 //g= &G3;
 	char a;int j;char q2;
 	do{
 	cout<< "\n\nwhat do you want to do?\n"
@@ -30,12 +33,31 @@ int main()
 			"\n2) question 2 of the assignment"
 			"\n3) exit";
 
+
 	cin>>j;
 switch(j)
 {
 case 1:
 {
 	do{
+
+
+		cout<<"\nWhich graph do u want to edit(input 1,2 or 3 for graph 1,2 or 3)";
+			int which;
+			cin>>which;
+
+			if (which==1)
+			{
+				g= &G1;
+			}
+			else if(which==2)
+			{
+				g= &G2;
+			}
+			else if (which==3)
+			{
+				g= &G3;
+			}
 	cout<< "\n\nwhat do you want to do?\n";
 	cout<<"a) add Vertex\n"
 			"b) remove vertex\n"
@@ -50,6 +72,7 @@ case 1:
 			"k) Clear all Edges and Vertex\n"
 			"l) Exit Q1\n";
 	cin>>a;
+
 	switch (a)
 	{
 	case 'a':
@@ -204,28 +227,28 @@ case 2:
 			{
 					if (G1==G2)
 					{
-						cout<<"Graphs are the same";
+						cout<<"\nGraphs are the same";
 					}
 					else
 					{
-						cout<<"Graphs are not the same";
+						cout<<"\nGraphs are not the same";
 					}
 			}
 			break;
 			case 'b':
 			{
-				G1=G2;
+				G3=G1;
 			}
 			break;
 			case 'c':
 			{
 				int which;
 				do{
-				cout<<"which graph do you want to increment?(input 1,2 or 3 for graph 1,2 or 3)";
+				cout<<"\nwhich graph do you want to increment?(input 1,2 or 3 for graph 1,2 or 3)";
 				 cin>>which;
 				 if(which ==1)
 				 {
-					 cout<<"post-increment or pre-increment(1for post, 2 for pre) ";
+					 cout<<"\npost-increment or pre-increment(1for post, 2 for pre) ";
 					 int post;cin>>post;
 					 if(post==1)
 					 {
@@ -238,7 +261,7 @@ case 2:
 				 }
 				 else if(which ==2)
 				 {
-					 cout<<"post-increment or pre-increment(1for post, 2 for pre) ";
+					 cout<<"\npost-increment or pre-increment(1for post, 2 for pre) ";
 					 int post;cin>>post;
 					 if(post==1)
 					 {
@@ -251,7 +274,7 @@ case 2:
 				 }
 				 else if(which ==3)
 				 {
-					 cout<<"post-increment or pre-increment(1for post, 2 for pre) ";
+					 cout<<"\npost-increment or pre-increment(1for post, 2 for pre) ";
 					 int post;cin>>post;
 					 if(post==1)
 					 {
@@ -264,29 +287,45 @@ case 2:
 				 }
 
 
-				}while(which!=1||which!=2||which!=3);
+				}while(which!=1&&which!=2&&which!=3);
 			}
 			break;
 			case 'd':
 			{
-					G3=(G1+G2);
+					G3= (G1+G2);
 			}
 			break;
 			case 'e':
 			{
 				 if(G1>G2)
 					 {
-						cout<<"Graph 1 weight is greater than Graph 2";
+						cout<<"\nGraph 1 weight is greater than Graph 2";
 					 }
 				 else
 				 {
-					 cout<<"Graph 1 weight is less than or equal to Graph 2";
+					 cout<<"\nGraph 1 weight is less than or equal to Graph 2";
 				 }
 			}
 			break;
 			case 'f':
 			{
-
+				int which;
+				do{
+					cout<<"\nwhich graph do you want to print?(input 1,2 or 3 for graph 1,2 or 3)";
+					cin>>which;
+					if(which ==1)
+					{
+						cout<<G1;
+					}
+					else if(which ==2)
+					{
+						cout<<G2;
+					}
+					else if(which ==3)
+					{
+						cout<<G3;
+					}
+				}while(which!=1&&which!=2&&which!=3);
 			}
 			break;
 		}
